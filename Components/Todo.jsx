@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function Todo({toast}) {
     const [data, setData] = useState([]);
     const fetchData = async () => {
-        const response = await fetch(`${process.env.API_URL}/api`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`);
         let result = await response.json();
         setData(result);
     }
@@ -15,7 +15,7 @@ export default function Todo({toast}) {
     }, [])
 
     const handleDelete = async (id) => {
-        const response = await axios.delete(`${process.env.API_URL}/api`,{
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api`,{
             params:{
                 id:id,
             }
@@ -25,7 +25,7 @@ export default function Todo({toast}) {
     }
 
     const handleComplete = async (id) => {
-        const response = await axios.put(`${process.env.API_URL}/api`,{},{
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api`,{},{
             params:{
                 id:id,
             }

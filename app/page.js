@@ -25,14 +25,14 @@ export default function Home() {
   }
 
   const fetchData = async () => {
-    const response = await fetch(`${process.env.API_URL}/api`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`);
     await response.json();
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.API_URL}/api`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
