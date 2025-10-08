@@ -32,6 +32,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if(formData.title !== '' && formData.description !== ''){
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -43,6 +44,9 @@ export default function Home() {
         description: ""
       })
       toast(result.msg)
+    }else{
+      toast.error("Please fill all data")
+    }
     } catch (error) {
       console.error("Error :", error)
     } finally {

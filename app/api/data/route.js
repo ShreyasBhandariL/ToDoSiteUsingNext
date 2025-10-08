@@ -22,6 +22,12 @@ export async function POST(req){
    
 }
 
+export async function DELETE(request) {
+    const id = await request.nextUrl.searchParams.get('id')
+    await Product.findByIdAndDelete(id)
+    return NextResponse.json({msg:"The Data Deleted Successfully"})
+}
+
 export async function PUT(req) {
     const body = await req.json();
     const {name,quantity,price,totalPrice} = body;

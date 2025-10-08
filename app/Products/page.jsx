@@ -14,34 +14,35 @@ export default function Prodcuts() {
         price: 0,
         totalPrice: 0,
     })
-    const [updateData, setUpdateData] = useState({name: "",
+    const [updateData, setUpdateData] = useState({
+        name: "",
         quantity: 0,
         price: 0,
         totalPrice: 0,
     });
 
     useEffect(() => {
-            const name = "totalPrice";
-            if (flag === 2) {
-                const TotalPrice = updateData.price * updateData.quantity;
-                setUpdateData(form => ({ ...form, [name]: TotalPrice }))
-            } else {
-                if (formData.price !== 0 && formData.quantity !== 0) {
+        const name = "totalPrice";
+        if (flag === 2) {
+            const TotalPrice = updateData.price * updateData.quantity;
+            setUpdateData(form => ({ ...form, [name]: TotalPrice }))
+        } else {
+            if (formData.price !== 0 && formData.quantity !== 0) {
                 const TotalPrice = formData.price * formData.quantity;
                 setFormData(form => ({ ...form, [name]: TotalPrice }))
-                }
             }
+        }
         if (flag === 0) {
             displayProduct();
         }
-    }, [flag,formData.quantity,formData.price,updateData.price,updateData.quantity]);
+    }, [flag, formData.quantity, formData.price, updateData.price, updateData.quantity]);
 
     const onDataHandler = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         if (flag === 2) {
             setUpdateData(form => ({ ...form, [name]: value }))
-        }else{
+        } else {
             setFormData(form => ({ ...form, [name]: value }))
         }
     }
@@ -64,28 +65,42 @@ export default function Prodcuts() {
             quantity: response.data.result[index].quantity,
             price: response.data.result[index].price,
             totalPrice: response.data.result[index].totalPrice,
-            id:response.data.result[index]._id,
+            id: response.data.result[index]._id,
         })
+    }
+
+    const handleDelete = async (index) => {
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/data`, {
+            params: {
+                id: index
+            }
+        });
+        toast.error(response.data.msg);
+        displayProduct();
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/data`, formData)
-        toast(response.data.msg);
-        setFormData({
-            name: "",
-            quantity: 0,
-            price: 0,
-            totalPrice: 0,
-        })
+        if (formData.name !== '' && formData.quantity !== 0 && formData.price !== 0 && formData.totalPrice !== 0) {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/data`, formData)
+            toast(response.data.msg);
+            setFormData({
+                name: "",
+                quantity: 0,
+                price: 0,
+                totalPrice: 0,
+            })
+        } else {
+            toast.error("Please enter all details");
+        }
     }
 
     const addUpdateData = async (e) => {
         e.preventDefault();
         const id = e.target.name;
-        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/data`,updateData,{
-            params:{
-                id:id
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/data`, updateData, {
+            params: {
+                id: id
             }
         });
         toast(response.data.msg);
@@ -133,7 +148,7 @@ export default function Prodcuts() {
                                 <th scope="col" className="px-6 py-3">
                                     Total Price
                                 </th>
-                                <th scope="col" className="px-6 py-3">ACtion</th>
+                                <th scope="col" className="px-2 py-3 text-center">ACtion</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -154,8 +169,13 @@ export default function Prodcuts() {
                                     <td className="px-6 py-4 ">
                                         {data.totalPrice}
                                     </td>
-                                    <td className="px-6 py-4 text-green-500 cursor-pointer font-semibold" onClick={() => handleUpdate(index)}>
-                                        Update
+                                    <td className="px-2 py-4 text-center">
+                                        <button className="px-3 text-red-500 cursor-pointer font-semibold" onClick={() => handleDelete(data._id)}>
+                                            Delete
+                                        </button>
+                                        <button className="px-3 text-green-500 cursor-pointer font-semibold" onClick={() => handleUpdate(index)}>
+                                            Update
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
