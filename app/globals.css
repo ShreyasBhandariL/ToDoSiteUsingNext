@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+
+@media (max-width: 768px){
+    .todocard{
+        width: 90%;
+        margin-top: 10px;
+    }
+    .todoform{
+        width: 85%;
+        padding:10px 0px; 
+    }
+    .productHeader{
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        /* justify-content: space-around; */
+    }
+    .productHeader ul {
+        gap: 10;
+    }
+    .productHeader ul li {
+        border: 1px solid #7ecf03;
+        border-radius: 4;
+        font-size: 12;
+        align-items: center;
+        display: flex;
+        padding: 0 5px;
+    }
+    .productcard{
+        width: 90%;
+    }
+    .updateForm{
+        width: 90%;
+    }
+    .addProduct{
+        width: 90%;
+        top: 100px;
+    }
+}

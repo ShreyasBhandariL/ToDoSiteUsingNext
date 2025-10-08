@@ -93,7 +93,7 @@ export default function Prodcuts() {
     }
 
     return (<><ToastContainer />
-        <div className="flex justify-around py-5 align-center text-center m-auto w-[70%]">
+        <div className="flex justify-around py-5 align-center text-center m-auto w-[70%] productHeader">
             <h1 className="flex justify-start text-lg font-semibold">Products</h1>
             <Link href={'/'}><FaHome size={24} className="text-orange-500" /></Link>
             <ul className="text-sm flex gap-10 cursor-pointer list-style-none">
@@ -101,7 +101,7 @@ export default function Prodcuts() {
                 <li onClick={displayProduct}>Display Product</li>
             </ul>
 
-            {flag === 1 && (<div className="absolute top-50 border-1 p-10 rounded w-100">
+            {flag === 1 && (<div className="absolute top-50 border-1 p-10 rounded w-100 addProduct">
                 <label className="flex mb-[20px] font-semibold text-lg">Add Product</label>
                 <form className="flex flex-col gap-5">
                     <input type="text" name="name" placeholder="Product Name" value={formData.name} required onChange={onDataHandler} className="border-1 px-2 text-sm py-1" />
@@ -114,7 +114,7 @@ export default function Prodcuts() {
 
 
             {flag === 0 && (<>
-                <div className="absolute overflow-x-auto w-[50%] mt-24 mx-auto">
+                <div className="absolute overflow-x-auto w-[50%] mt-24 mx-auto productcard">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -164,7 +164,7 @@ export default function Prodcuts() {
                 </div>
             </>)}
 
-            {flag === 2 && (<div className="absolute top-50 border-1 p-10 rounded w-100">
+            {flag === 2 && (<div className="absolute top-50 border-1 p-10 rounded w-100 updateForm">
                 <label className="flex mb-[20px] font-semibold text-lg">Update Product</label>
                 <form className="flex flex-col gap-5">
                     <input type="text" name="name" value={updateData.name} onChange={onDataHandler} className="border-1 px-2 text-sm py-1" />
