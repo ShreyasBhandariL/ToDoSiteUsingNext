@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function Todo({toast}) {
     const [data, setData] = useState([]);
     const fetchData = async () => {
-        const response = await fetch("http://localhost:3001/api");
+        const response = await fetch("https://todosaver.netlify.app/api");
         let result = await response.json();
         setData(result);
     }
@@ -15,7 +15,7 @@ export default function Todo({toast}) {
     }, [])
 
     const handleDelete = async (id) => {
-        const response = await axios.delete("http://localhost:3001/api",{
+        const response = await axios.delete("https://todosaver.netlify.app/api",{
             params:{
                 id:id,
             }
@@ -25,7 +25,7 @@ export default function Todo({toast}) {
     }
 
     const handleComplete = async (id) => {
-        const response = await axios.put("http://localhost:3001/api",{},{
+        const response = await axios.put("https://todosaver.netlify.app/api",{},{
             params:{
                 id:id,
             }

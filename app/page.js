@@ -25,14 +25,14 @@ export default function Home() {
   }
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3001/api");
+    const response = await fetch("https://todosaver.netlify.app/api");
     await response.json();
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/api", {
+      const response = await fetch("https://todosaver.netlify.app/api", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
