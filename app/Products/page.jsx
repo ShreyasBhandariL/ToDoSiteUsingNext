@@ -52,13 +52,13 @@ export default function Prodcuts() {
 
     const displayProduct = async () => {
         setFlag(0);
-        const response = await axios("https://todosaver.netlify.app/api/data");
+        const response = await axios(`${process.env.API_URL}/api/data`);
         setProducts(response.data.result);
     }
 
     const handleUpdate = async (index) => {
         setFlag(2);
-        const response = await axios("https://todosaver.netlify.app/api/data");
+        const response = await axios(`${process.env.API_URL}/api/data`);
         setUpdateData({
             name: response.data.result[index].name,
             quantity: response.data.result[index].quantity,
@@ -70,7 +70,7 @@ export default function Prodcuts() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.post("https://todosaver.netlify.app/api/data", formData)
+        const response = await axios.post(`${process.env.API_URL}/api/data`, formData)
         toast(response.data.msg);
         setFormData({
             name: "",
@@ -83,7 +83,7 @@ export default function Prodcuts() {
     const addUpdateData = async (e) => {
         e.preventDefault();
         const id = e.target.name;
-        const response = await axios.put("https://todosaver.netlify.app/api/data",updateData,{
+        const response = await axios.put(`${process.env.API_URL}/api/data`,updateData,{
             params:{
                 id:id
             }
