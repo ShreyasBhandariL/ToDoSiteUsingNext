@@ -2,8 +2,8 @@ import withSerwistInit from '@serwist/next';
 
 const withSerwist = withSerwistInit({
   cacheOnNavigation: true,
-  swUrl: 'sw.js',
-  swSrc: 'lib/sw.js', 
+  swSrc: 'lib/sw.js',  
+  swDest: 'public/sw.js',
 });
 
 /** @type {import('next').NextConfig} */
