@@ -1,7 +1,20 @@
 @import "tailwindcss";
 
-
+.navMobile{
+    display: none;
+}
 @media (max-width: 768px){
+    .mainPage{
+        padding: 5px 24px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .navMobile{
+        display: flex;
+    }
+    .navWeb{
+        display: none;
+    }
     .todocard{
         width: 90%;
         margin-top: 10px;
