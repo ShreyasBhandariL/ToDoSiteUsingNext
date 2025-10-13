@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "ToDo Saver",
   description: "Created By Shreyas Bhandari L",
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({ children }) {
